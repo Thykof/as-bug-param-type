@@ -1,19 +1,21 @@
 {
   "type": "module",
-  "exports": {
-    ".": {
-      "import": "./build/release.js",
-      "types": "./build/release.d.ts"
-    }
-  },
   "scripts": {
     "asbuild:debug": "asc assembly/index.ts --target debug",
     "asbuild:release": "asc assembly/index.ts --target release",
     "asbuild": "npm run asbuild:debug && npm run asbuild:release",
-    "test": "node tests",
-    "start": "npx serve ."
+    "test": "asp",
+    "prettier:fix": "as-prettier \"**/*.ts\" --write",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "fmt:check": "npm run prettier && npm run lint",
+    "fmt": "npm run prettier:fix && npm run lint:fix"
   },
   "devDependencies": {
-    "assemblyscript": "^0.27.0"
-  }
+    "@as-pect/cli": "^8.0.1",
+    "@massalabs/eslint-config": "^0.0.9",
+    "@massalabs/prettier-config-as": "^0.0.2",
+    "assemblyscript": "^0.25.2"
+  },
+  "prettier": "@massalabs/prettier-config-as"
 }
